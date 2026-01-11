@@ -89,4 +89,10 @@ module Avo
       end
     end
   end
+  # Host apps may configure `inflect.acronym "URL"`, which makes Zeitwerk
+  # expect Avo::URLHelpers for url_helpers.rb.
+  URLHelpers = UrlHelpers unless const_defined?(:URLHelpers, false)
+
+  # Also allow the non-acronym spelling if the file is loaded under URLHelpers.
+  UrlHelpers = URLHelpers unless const_defined?(:UrlHelpers, false)
 end

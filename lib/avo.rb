@@ -12,6 +12,11 @@ loader.inflector.inflect(
 loader.ignore("#{__dir__}/generators")
 loader.setup
 
+if defined?(Rails)
+  require_relative "avo/acronym_support"
+  Avo::AcronymSupport.apply!
+end
+
 module Avo
   ROOT_PATH = Pathname.new(File.join(__dir__, ".."))
   IN_DEVELOPMENT = ENV["AVO_IN_DEVELOPMENT"] == "1"
